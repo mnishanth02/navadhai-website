@@ -1,27 +1,35 @@
-# Git and deployment workflow
+# Git and Cloudflare deployment workflow
 
 Repository: https://github.com/mnishanth02/navadhai-website (public, approved by the owner).
 
-Vercel's Git connection is active with production branch `main`. The local working branch is `development`. Main branch protection is enabled: pull requests and the `validate` check are required, branches must be up to date, and the rule applies to administrators. Force pushes and deletion are disabled. The owner approved making the repository public so these protections are available without a plan upgrade. Publishing source does not disable Vercel Authentication or enable site indexing.
+Cloudflare publishes reviewed `main` through GitHub Actions. Main protection requires PRs and an up-to-date passing `validate` check, including for administrators. Force pushes and deletion are disabled. The owner approved making the repository public and subsequently approved a public, indexable website launch.
 
-Develop on `development`, or create a short feature branch from it. Open a PR into `main` and require the `validate` GitHub Actions check before merging where the account plan supports branch protection. Prefer merge commits. Vercel's Git integration builds previews for development and PR pushes and production deployments for merges into `main`.
+Develop on `development`, or create a short feature branch from it. Open a PR into `main` and use merge commits. Feature builds default to noindex and do not deploy over the production domains.
 
-The Vercel build runs formatting, lint, type checks, unit/build tests and static resource checks. Full Chromium smoke tests run in GitHub Actions. Production target does not imply public launch: the site's default indexing policy remains internal and Vercel Authentication is configured for **all deployments**, including custom domains.
+The validation job runs formatting, lint, types, unit/build tests, resource checks and Chromium tests against the actual local Cloudflare runtime. Main builds set SITE_ENV=production and SITE_VISIBILITY=public. The deploy job runs only after successful validation and publishes the website before its apex redirect. Install/build steps do not receive the deployment credential; only the deploy step receives the scoped CLOUDFLARE_API_TOKEN GitHub Actions secret.
 
 The `sync-development` job runs only after validation succeeds for a push to `main`. It merges main into development and pushes without force. Existing development changes are preserved. A conflict fails the job for a manual resolution instead of overwriting changes. Before starting more work, run `git switch development` then `git pull --ff-only`.
 
 ## Custom domain
 
-Vercel project: `mnishanth02s-projects/navodhai-landing`. The primary domain is `www.navodhai.in`; `navodhai.in` redirects permanently (308) to www. DNS remains hosted at Cloudflare, with existing nameservers retained. Both domains passed Vercel's DNS verification on 15 November 2026 and are assigned to the production deployment from `main`.
+Cloudflare account: 68876249314ab88c8b5bdb86ba5fd8c8. The asset-only Worker `navodhai-website` serves `www.navodhai.in`. The asset-only Worker `navodhai-apex` supplies permanent 308 redirects from the apex and HTTP www routes, preserving paths and queries. Neither has a custom server script, database or paid binding. Cloudflare retains the domain's existing nameservers and manages DNS/certificates for the Worker custom domains.
 
-Verified DNS configuration on 15 November 2026:
+Target routing after the migration:
 
-| Type | Name | Target | Cloudflare proxy |
-| --- | --- | --- | --- |
-| A | @ | 64.29.17.1 | DNS only |
-| A | @ | 216.198.79.1 | DNS only |
-| CNAME | www | 0e44cd2a22220128.vercel-dns-017.com | DNS only |
+| Type                 | Host / pattern           | Target           |
+| -------------------- | ------------------------ | ---------------- |
+| Worker custom domain | www.navodhai.in          | navodhai-website |
+| Worker custom domain | navodhai.in              | navodhai-apex    |
+| Worker route         | http://www.navodhai.in/* | navodhai-apex    |
 
-Preserve mail/TXT/other DNS records when updating web records. HTTPS, the apex-to-www redirect and the authenticated homepage were verified. `SITE_URL=https://www.navodhai.in` is configured in Vercel for Production and Preview so canonical and share URLs match the primary domain. Vercel CLI 65.16.0 is installed globally and authenticated; use `vercel domains verify navodhai.in --scope mnishanth02s-projects` and the corresponding www command when rechecking DNS.
+Replace only the retired Vercel web records; preserve unrelated mail/TXT/other DNS records. The canonical origin is https://www.navodhai.in/. Wrangler 4.162.0 is pinned in the project. Local OAuth credentials use the Windows keyring. The Actions token is scoped to this account and zone, with Workers Scripts Edit, Workers Routes Edit, Zone Read and DNS Edit permissions. Tokens must never be committed or logged.
 
-Keep all-deployment authentication enabled and `SITE_VISIBILITY` internal for testing. Before a public commercial launch, use a commercially eligible hosting plan, explicitly enable public visibility, rebuild and verify indexing/metadata on the domain.
+Run `pnpm validate` before a PR. For a release, set SITE_ENV=production, SITE_VISIBILITY=public and SITE_URL=https://www.navodhai.in, then validate and run `pnpm deploy`. The deploy command refuses internal builds or an unexpected production canonical origin. To test deployed domains, set SMOKE_BASE_URL=https://www.navodhai.in and SMOKE_APEX_URL=https://navodhai.in, then run `pnpm test:smoke`.
+
+For rollback, select the preceding Cloudflare deployment version and revert the source change through a PR. No service upgrade or paid binding is part of this static setup.
+
+The static response policy uses `no-transform` to prevent Cloudflare's automatic analytics injection from changing CSP-hashed HTML. Analytics is outside this launch's scope. HTML revalidates, while fingerprinted assets have a single one-year immutable cache policy. The browser checks verify both policies and reject injected analytics scripts.
+
+## Retired Vercel hosting
+
+On 15 November 2026, the owner requested removal before migration. The `navodhai-landing` project, deployments and Vercel ownership of navodhai.in were deleted. API checks confirmed project 404 and an empty team domain list. Local linkage/OIDC files and source deployment adapters were removed. Unrelated projects and global account access were preserved.

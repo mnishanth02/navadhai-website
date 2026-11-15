@@ -21,8 +21,8 @@ The build writes one consistent title/description across page, Open Graph and X 
 
 ## Public launch check
 
-Vercel Authentication currently protects the entire site, including images. A social crawler cannot sign in, so preparing correct tags does **not** enable live WhatsApp/Facebook/LinkedIn/X previews during internal testing. Keep protection and internal indexing policy until a public launch is approved.
+The owner approved a public, indexable Cloudflare launch. The canonical homepage and all image/icon URLs must be accessible without sign-in. Internal/feature builds remain noindex; the workers.dev diagnostic hostname has its own noindex response header.
 
-At launch, confirm the homepage, icon and OG image return 200 without authentication; verify apex-to-www HTTPS redirects and canonical/share URLs. Then test actual link previews. Platforms cache cards independently, so use their preview refresh tools when available after an image changes. `noindex` and authentication are separate settings; do not disable either merely to test this PR.
+At launch, confirm the homepage, icon and OG image return 200 without authentication; verify apex-to-www HTTPS redirects and canonical/share URLs. Then test actual link previews. Platforms cache cards independently, so use their preview refresh tools when available after an image changes. A noindex directive is separate from authentication; feature work must not publish an internal build over the public domains.
 
 References: [Open Graph](https://ogp.me/), [Google favicon guidance](https://developers.google.com/search/docs/appearance/favicon-in-search), [Apple web clip icons](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html), [manifest icons](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/icons).

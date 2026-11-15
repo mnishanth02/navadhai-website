@@ -9,13 +9,11 @@ export function resolveSiteConfig(env = process.env) {
     !env.SITE_VISIBILITY || ["internal", "public"].includes(env.SITE_VISIBILITY),
     "SITE_VISIBILITY must be internal or public",
   );
-  // A Vercel Preview must never become indexable through a shared override.
-  const productionTarget = env.VERCEL_ENV
-    ? env.VERCEL_ENV === "production"
-    : env.SITE_ENV === "production";
+  // CI sets production only for reviewed main-branch builds.
+  const productionTarget = env.SITE_ENV === "production";
   const production = productionTarget && env.SITE_VISIBILITY === "public";
   const supplied = env.SITE_URL?.trim();
-  // The owner-confirmed domain stays canonical across Vercel and Cloudflare.
+  // Keep the owner-confirmed canonical domain independent of hosting URLs.
   const value = supplied || "https://www.navodhai.in/";
   let origin = null;
   if (value) {

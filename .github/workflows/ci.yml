@@ -8,9 +8,14 @@ on:
 permissions:
   contents: read
 
+env:
+  SITE_ENV: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+  SITE_VISIBILITY: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'public' || 'internal' }}
+  SITE_URL: https://www.navodhai.in
+
 concurrency:
   group: validate-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   validate:
@@ -28,6 +33,33 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm validate
+
+  deploy:
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://www.navodhai.in
+    concurrency:
+      group: cloudflare-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24.x
+          package-manager-cache: false
+      - name: Install pinned package manager
+        working-directory: ${{ runner.temp }}
+        run: npm install --global pnpm@12.18.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build:checked
+      - name: Publish static site and apex redirect
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm deploy
 
   sync-development:
     needs: validate
