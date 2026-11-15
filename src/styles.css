@@ -181,84 +181,83 @@
     background: var(--action-bg);
   }
   .idea-section {
-    padding-block: clamp(3.5rem, 6vw, 5.5rem);
+    padding-block: clamp(3.5rem, 7vw, 6.5rem);
     background: var(--color-surface);
   }
   .idea-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
-    align-items: start;
-    gap: clamp(3rem, 8vw, 8rem);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+  .idea-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 2rem clamp(3rem, 8vw, 8rem);
   }
   .idea-intro h2 {
-    max-width: 11ch;
-    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
-    line-height: 1.12;
+    max-width: 14ch;
+    font-size: clamp(2.5rem, 4.2vw, 3.75rem);
+    line-height: 1.1;
   }
   .idea-intro p {
-    max-width: 34ch;
-    margin-block-start: 1.5rem;
+    max-width: 43ch;
     color: var(--color-muted);
     font-size: 1.0625rem;
   }
   .idea-notes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 4vw, 4rem);
     margin: 0;
     min-width: 0;
   }
   .idea-notes > div {
-    position: relative;
-    padding-block: 1.6rem;
-    padding-inline-end: 7rem;
-    border-block-end: 1px solid var(--color-rule);
-  }
-  .idea-notes > div:first-child {
-    padding-block-start: 0;
-  }
-  .idea-notes > div:last-child {
-    padding-block-end: 0;
-    border: 0;
+    min-width: 0;
+    padding-block-start: 1.5rem;
+    border-block-start: 1px solid var(--color-rule);
   }
   .idea-notes dt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 2vw, 1.75rem);
+    font-size: clamp(1.625rem, 2.25vw, 2rem);
     line-height: 1.2;
     color: var(--color-heading);
     overflow-wrap: anywhere;
   }
   .idea-notes dd {
-    max-width: 52ch;
-    margin-block-start: 0.6rem;
+    max-width: 36ch;
+    margin-block-start: 0.875rem;
     color: var(--color-muted);
     overflow-wrap: anywhere;
   }
   .idea-note-illustration {
-    position: absolute;
-    inset-block-start: 1.6rem;
-    inset-inline-end: 0;
     display: block;
-    width: 88px;
-    height: 88px;
+    width: 112px;
+    height: 112px;
     object-fit: contain;
     pointer-events: none;
-  }
-  .idea-notes > div:first-child .idea-note-illustration {
-    inset-block-start: 0;
   }
   .contact {
     --focus: var(--color-antique-gold);
     --monogram-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-    padding-block: clamp(2.5rem, 5vw, 4rem) 1.25rem;
+    /* Keep the contact channels above the fixed back-to-top control at page end. */
+    padding-block: clamp(3.5rem, 7vw, 6rem) 5.5rem;
     background: var(--color-royal-plum);
     color: var(--color-ivory);
   }
   .ordering-section {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
     gap: clamp(3rem, 8vw, 8rem);
-    padding-block: clamp(3.5rem, 6vw, 5.5rem);
+    padding-block: clamp(3.5rem, 8vw, 7rem);
   }
   .ordering-intro h2 {
-    max-width: 12ch;
+    max-width: 14ch;
+    font-size: clamp(2.5rem, 4.2vw, 3.75rem);
+    line-height: 1.1;
   }
   .ordering-intro > p {
     margin-block-start: 1.5rem;
@@ -267,16 +266,25 @@
   .ordering-steps {
     display: grid;
     list-style-type: decimal;
-    gap: 1.5rem;
+    gap: 0;
     margin: 0;
-    padding-inline-start: 1.5rem;
+    padding-inline-start: 1.75rem;
   }
   .ordering-steps li {
-    padding-inline-start: 0.5rem;
+    padding: 1.5rem 0 1.5rem 0.75rem;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .ordering-steps li:first-child {
+    padding-block-start: 0;
+  }
+  .ordering-steps li:last-child {
+    padding-block-end: 0;
+    border: 0;
   }
   .ordering-steps li::marker {
     color: var(--color-heading);
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
   }
   .ordering-steps h3 {
     color: var(--color-heading);
@@ -292,14 +300,14 @@
   .contact-opening {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 1rem 2rem;
   }
   .contact h2 {
     color: var(--color-ivory);
-    font-size: clamp(2.75rem, 6vw, 4.75rem);
-    line-height: 1.08;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 1.05;
   }
   .contact-whatsapp {
     display: inline-flex;
@@ -327,8 +335,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem 2rem;
-    margin-block-start: 2.25rem;
-    padding-block-start: 1rem;
+    margin-block-start: clamp(2.5rem, 5vw, 4.5rem);
+    padding-block-start: 1.5rem;
     border-block-start: 1px solid
       color-mix(in srgb, var(--color-ivory) 25%, var(--color-royal-plum));
   }
@@ -420,29 +428,37 @@
     gap: 2.5rem;
   }
   .idea-layout {
-    grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
+  }
+  .idea-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
   }
   .idea-intro p {
     max-width: 44ch;
   }
-  .idea-notes > div {
-    padding-inline-end: 0;
+  .idea-notes {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
   }
   .idea-notes dt {
-    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1.5rem;
   }
   .idea-notes dt span {
     min-width: 0;
+    flex: 1;
   }
   .idea-note-illustration {
-    position: static;
     flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
+  }
+  .idea-notes dd {
+    max-width: 48ch;
+    margin-block-start: 0.75rem;
   }
   .contact-rail {
     align-items: flex-start;
@@ -451,6 +467,14 @@
   }
 }
 @media (max-width: 540px) {
+  .idea-notes dt {
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+  .idea-note-illustration {
+    width: 64px;
+    height: 64px;
+  }
   .action {
     padding-inline: min(1.1rem, 18px);
     font-size: 1rem;
@@ -460,7 +484,7 @@
     gap: 0.75rem 1rem;
   }
   .contact h2 {
-    font-size: 2.75rem;
+    font-size: 3.5rem;
   }
   .contact-whatsapp {
     gap: 0.6rem;
@@ -471,7 +495,7 @@
     height: 22px;
   }
   .contact-rail {
-    margin-block-start: 1.5rem;
+    margin-block-start: 2.5rem;
   }
   .contact-channels {
     align-items: flex-start;

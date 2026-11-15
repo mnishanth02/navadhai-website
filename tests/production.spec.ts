@@ -402,7 +402,7 @@ test.describe("without application JavaScript", () => {
   });
 });
 
-for (const width of [320, 390, 768, 1280]) {
+for (const width of [320, 390, 768, 980, 1280]) {
   for (const scale of [100, 200]) {
     test(`reflows at ${width}px with ${scale}% root text`, async ({ page }, testInfo) => {
       await page.setViewportSize({ width, height: 900 });
