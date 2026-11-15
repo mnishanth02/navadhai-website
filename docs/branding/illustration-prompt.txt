@@ -1,0 +1,11 @@
+Historical palette-edit record. The original input is preserved at docs/archive/static-site/assets/textile-study.webp. The former runtime WebP paths below describe the generation session; those unused copies have been removed. The generated source PNG and exact prompt remain preserved.
+
+Tool: built-in image_gen, image edit. Date: 2026-11-14.
+Edit target: src/assets/textile-study.webp (earlier conceptual illustration).
+Palette reference: docs/branding/canva-reference/page-5.png (supplied Canva guidelines).
+Output original: docs/branding/textile-study-v4-source.png.
+Web output: src/assets/textile-study-v4.webp (WebP quality 82, compression level 6).
+The V4 logos were downloaded separately from Canva and were not generated or edited.
+
+Final prompt:
+Use case: style-transfer. Asset type: existing conceptual textile illustration for a handcrafted South Indian blouse and dress boutique website. Image 1 is the edit target; Image 2 is the authoritative brand palette reference only. Preserve the target's exact clean 4:3 composition: one blouse bodice pattern at left, a long dress-panel pattern behind it at right, a curved sleeve piece at bottom/front, precise stitch/dart seams, tactile woven fabric and a single curving thread. Recolour only, to the existing Navodhai V4 palette: the large clean matte backdrop is warm Ivory #F9F0E3; the left bodice is rich Royal Plum #47162F; the right dress panel is warm pale ivory cloth; the front sleeve is muted Dusty Rose #C88B96; the thin thread is Antique Gold #BE9A63; use subtle natural Charcoal #302830 shadows. Keep the fabric texture, sharp pattern edges, craftsmanship and carefully controlled dimensional light. No lavender, orchid, purple-blue or bright yellow. No added garments, sewing tools, flowers, text, lettering, logo, border, watermark or graphic labels. This is visibly conceptual material artwork, not a finished product photograph. Preserve generous visibility around the outer edges of every pattern piece. Output one polished 4:3 image.

@@ -1,0 +1,119 @@
+﻿{
+    "schemaVersion":  2,
+    "generatedAt":  "2026-11-14T13:08:05.5122949Z",
+    "title":  "Design System: Navodhai V4 boutique",
+    "extensions":  {
+                       "shadows":  [
+
+                                   ],
+                       "motion":  [
+                                      {
+                                          "name":  "control-state",
+                                          "value":  "180ms colour and pointer feedback",
+                                          "purpose":  "Quiet native actions with reduced-motion suppression."
+                                      },
+                                      {
+                                          "name":  "enquiry-message",
+                                          "value":  "200ms opacity and 5px movement",
+                                          "purpose":  "Optional feedback while message and destination update together."
+                                      },
+                                      {
+                                          "name":  "seam-study",
+                                          "value":  "360ms path drawing",
+                                          "purpose":  "Original decorative SVG garment study reflects the enquiry topic."
+                                      },
+                                      {
+                                          "name":  "opening-art",
+                                          "value":  "320ms y 0 to -4px to 0, once",
+                                          "purpose":  "Short opening moment, always visible and no loop."
+                                      },
+                                      {
+                                          "name":  "disclosure",
+                                          "value":  "240ms progressive CSS height",
+                                          "purpose":  "Native disclosure works without script and animation."
+                                      }
+                                  ],
+                       "breakpoints":  [
+                                           {
+                                               "name":  "stack-main",
+                                               "value":  "760px",
+                                               "purpose":  "Stack hero/contact and preserve full artwork."
+                                           },
+                                           {
+                                               "name":  "stack-controls",
+                                               "value":  "540px",
+                                               "purpose":  "Full-width topic choices and stacked footer."
+                                           }
+                                       ]
+                   },
+    "components":  [
+                       {
+                           "name":  "Primary WhatsApp action",
+                           "kind":  "button",
+                           "refersTo":  "action",
+                           "description":  "Native direct enquiry; no appended arrow.",
+                           "html":  "\u003ca class=\"action\" href=\"https://wa.me/917845952592?text=Hi%20Navodhai%2C%20I%27d%20like%20to%20discuss%20an%20enquiry.\"\u003eEnquire on WhatsApp\u003c/a\u003e",
+                           "css":  ".action{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.85rem 1.35rem;border:1px solid transparent;border-radius:6px;background:#47162f;color:#f9f0e3;font:500 1rem/1.5 \"Inter\",Arial,sans-serif;text-decoration:none;transition:background-color 180ms ease-out}.action:hover{background:#47162f}.action:focus-visible{outline:3px solid #47162f;outline-offset:5px}@media(prefers-reduced-motion:reduce){.action{transition:none}}"
+                       },
+                       {
+                           "name":  "Inverse WhatsApp action",
+                           "kind":  "button",
+                           "refersTo":  "action-inverse",
+                           "description":  "Native action in the Royal Plum contact section.",
+                           "html":  "\u003cdiv style=\"padding:24px;background:#47162f\"\u003e\u003ca class=\"action-inverse\" href=\"https://wa.me/917845952592?text=Hi%20Navodhai%2C%20I%27d%20like%20to%20discuss%20an%20enquiry.\"\u003eEnquire on WhatsApp\u003c/a\u003e\u003c/div\u003e",
+                           "css":  ".action-inverse{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.85rem 1.35rem;border:1px solid transparent;border-radius:6px;background:#f9f0e3;color:#47162f;font:500 1rem/1.5 \"Inter\",Arial,sans-serif;text-decoration:none}.action-inverse:hover{background:#c88b96}.action-inverse:focus-visible{outline:3px solid #c88b96;outline-offset:5px}"
+                       },
+                       {
+                           "name":  "Enquiry topics",
+                           "kind":  "radio",
+                           "description":  "Native checked/focus states. src/components/Enquiry.tsx updates the visible message, service prompt, actual destination and SVG study.",
+                           "html":  "\u003cfieldset class=\"topics\"\u003e\u003clegend\u003eEnquiry topic\u003c/legend\u003e\u003clabel\u003e\u003cinput type=\"radio\" name=\"ds-topic\" checked\u003eBlouse making\u003c/label\u003e\u003clabel\u003e\u003cinput type=\"radio\" name=\"ds-topic\"\u003eDress making\u003c/label\u003e\u003clabel\u003e\u003cinput type=\"radio\" name=\"ds-topic\"\u003eCustomisation\u003c/label\u003e\u003c/fieldset\u003e",
+                           "css":  ".topics{border:0;padding:0;font-family:\"Inter\",Arial,sans-serif;color:#47162f}.topics label{display:flex;align-items:center;gap:.8rem;min-height:70px;padding:1rem 1.25rem;border-bottom:3px solid #dac7b9}.topics label:has(input:checked){border-color:#47162f;background:#f2e3d9}.topics input{accent-color:#47162f;width:18px;height:18px}.topics input:focus-visible{outline:3px solid #47162f;outline-offset:3px}"
+                       },
+                       {
+                           "name":  "Message preview",
+                           "kind":  "content",
+                           "description":  "A meaningful preview boundary with a 75ch maximum measure, not a decorative card.",
+                           "html":  "\u003cdiv class=\"message-block\"\u003e\u003cp class=\"message-label\"\u003eYour WhatsApp message\u003c/p\u003e\u003cp\u003eHi Navodhai, I\u0027d like to enquire about blouse making. Can we discuss my requirements?\u003c/p\u003e\u003c/div\u003e",
+                           "css":  ".message-block{max-width:75ch;padding:1.25rem 1.4rem;background:#f9f0e3;border:1px solid #dac7b9;border-radius:6px;color:#47162f;font:400 1rem/1.65 \"Inter\",Arial,sans-serif}.message-block p{margin:0}.message-block .message-label{margin-bottom:.5rem;font-size:.8125rem;color:#6a505d}"
+                       },
+                       {
+                           "name":  "Preparation disclosure",
+                           "kind":  "disclosure",
+                           "description":  "Native disclosure, independent of JavaScript.",
+                           "html":  "\u003cdetails\u003e\u003csummary\u003eHave a reference?\u003c/summary\u003e\u003cp\u003eYou can share a reference image during your WhatsApp conversation and explain the details you like.\u003c/p\u003e\u003c/details\u003e",
+                           "css":  "details{border-block:1px solid #dac7b9;font-family:\"Inter\",Arial,sans-serif;color:#47162f}summary{min-height:70px;padding:1.2rem .25rem;font-size:1.0625rem;font-weight:500;cursor:pointer}details p{max-width:65ch;padding:0 2.5rem 1.5rem .25rem;color:#6a505d}summary:focus-visible{outline:3px solid #47162f;outline-offset:5px}"
+                       },
+                       {
+                           "name":  "Visible email alternative",
+                           "kind":  "link",
+                           "description":  "Selectable user-confirmed contact, independent of the enquiry helper.",
+                           "html":  "\u003ca class=\"contact-link\" href=\"mailto:manjulajayanthi1@gmail.com\"\u003emanjulajayanthi1@gmail.com\u003c/a\u003e",
+                           "css":  ".contact-link{display:inline-block;padding:.3rem 0;color:#47162f;font:400 1rem/1.65 \"Inter\",Arial,sans-serif;overflow-wrap:anywhere;text-underline-offset:.25em}.contact-link:focus-visible{outline:3px solid #47162f;outline-offset:5px}"
+                       }
+                   ],
+    "narrative":  {
+                      "northStar":  "V4 identity retained; a useful boutique enquiry.",
+                      "overview":  "Visual authority: supplied Canva Digital Brand \u0026 Website Guidelines 1.0, design DAHaQEXgEaY. Exact Royal Plum, Ivory, Antique Gold, Dusty Rose and Charcoal; GFS Didot 400 and Inter; actual embedded horizontal logo and transparent monogram. Source src/, static output dist/. Conceptual textile artwork remains labelled.",
+                      "keyCharacteristics":  [
+                                                 "Fixed V4 logo artwork with clear space",
+                                                 "Plum opening and ivory service surfaces",
+                                                 "GFS Didot display with Inter supporting type",
+                                                 "Brand-colour textile illustration and SVG seam studies",
+                                                 "Prerendered services and direct contact fallback"
+                                             ],
+                      "dos":  [
+                                  "Preserve verified V4 artwork, palette and companion fonts.",
+                                  "Keep confirmed contacts and services.",
+                                  "Keep the conceptual-art caption.",
+                                  "Use Antique Gold as decoration on Ivory, never body text.",
+                                  "Respect reduced motion and native controls."
+                              ],
+                      "donts":  [
+                                    "Do not retype, recolour or distort the logo.",
+                                    "Do not restore provisional white/orchid typography.",
+                                    "Do not present generated material studies as actual commissions.",
+                                    "Do not make contacting the boutique depend on JavaScript."
+                                ]
+                  }
+}

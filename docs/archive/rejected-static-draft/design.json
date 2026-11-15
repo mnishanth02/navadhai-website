@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T10:57:28.407Z",
+  "title": "Design System: Navodhai",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.00512 67.76)",
+          "oklch(26.43% 0.00512 67.76)",
+          "oklch(37.86% 0.00512 67.76)",
+          "oklch(49.29% 0.00512 67.76)",
+          "oklch(60.71% 0.00512 67.76)",
+          "oklch(72.14% 0.00512 67.76)",
+          "oklch(83.57% 0.00512 67.76)",
+          "oklch(95.00% 0.00512 67.76)"
+        ]
+      },
+      "plum": {
+        "role": "primary",
+        "displayName": "Plum",
+        "tonalRamp": [
+          "oklch(15.00% 0.06343 343.96)",
+          "oklch(26.43% 0.06343 343.96)",
+          "oklch(37.86% 0.06343 343.96)",
+          "oklch(49.29% 0.06343 343.96)",
+          "oklch(60.71% 0.06343 343.96)",
+          "oklch(72.14% 0.06343 343.96)",
+          "oklch(83.57% 0.06343 343.96)",
+          "oklch(95.00% 0.06343 343.96)"
+        ]
+      },
+      "plum-deep": {
+        "role": "primary",
+        "displayName": "Deep plum",
+        "tonalRamp": [
+          "oklch(15.00% 0.05369 343.52)",
+          "oklch(26.43% 0.05369 343.52)",
+          "oklch(37.86% 0.05369 343.52)",
+          "oklch(49.29% 0.05369 343.52)",
+          "oklch(60.71% 0.05369 343.52)",
+          "oklch(72.14% 0.05369 343.52)",
+          "oklch(83.57% 0.05369 343.52)",
+          "oklch(95.00% 0.05369 343.52)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted plum",
+        "tonalRamp": [
+          "oklch(15.00% 0.03297 343.14)",
+          "oklch(26.43% 0.03297 343.14)",
+          "oklch(37.86% 0.03297 343.14)",
+          "oklch(49.29% 0.03297 343.14)",
+          "oklch(60.71% 0.03297 343.14)",
+          "oklch(72.14% 0.03297 343.14)",
+          "oklch(83.57% 0.03297 343.14)",
+          "oklch(95.00% 0.03297 343.14)"
+        ]
+      },
+      "rose": {
+        "role": "neutral",
+        "displayName": "Rose",
+        "tonalRamp": [
+          "oklch(15.00% 0.01467 1.57)",
+          "oklch(26.43% 0.01467 1.57)",
+          "oklch(37.86% 0.01467 1.57)",
+          "oklch(49.29% 0.01467 1.57)",
+          "oklch(60.71% 0.01467 1.57)",
+          "oklch(72.14% 0.01467 1.57)",
+          "oklch(83.57% 0.01467 1.57)",
+          "oklch(95.00% 0.01467 1.57)"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Antique gold",
+        "tonalRamp": [
+          "oklch(15.00% 0.09273 74.45)",
+          "oklch(26.43% 0.09273 74.45)",
+          "oklch(37.86% 0.09273 74.45)",
+          "oklch(49.29% 0.09273 74.45)",
+          "oklch(60.71% 0.09273 74.45)",
+          "oklch(72.14% 0.09273 74.45)",
+          "oklch(83.57% 0.09273 74.45)",
+          "oklch(95.00% 0.09273 74.45)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Pale rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.01801 355.19)",
+          "oklch(26.43% 0.01801 355.19)",
+          "oklch(37.86% 0.01801 355.19)",
+          "oklch(49.29% 0.01801 355.19)",
+          "oklch(60.71% 0.01801 355.19)",
+          "oklch(72.14% 0.01801 355.19)",
+          "oklch(83.57% 0.01801 355.19)",
+          "oklch(95.00% 0.01801 355.19)"
+        ]
+      },
+      "contact-muted": {
+        "role": "neutral",
+        "displayName": "Contact supporting text",
+        "tonalRamp": [
+          "oklch(15.00% 0.02406 343.01)",
+          "oklch(26.43% 0.02406 343.01)",
+          "oklch(37.86% 0.02406 343.01)",
+          "oklch(49.29% 0.02406 343.01)",
+          "oklch(60.71% 0.02406 343.01)",
+          "oklch(72.14% 0.02406 343.01)",
+          "oklch(83.57% 0.02406 343.01)",
+          "oklch(95.00% 0.02406 343.01)"
+        ]
+      },
+      "contact-rule-mobile": {
+        "role": "neutral",
+        "displayName": "Mobile contact divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.05316 343.75)",
+          "oklch(26.43% 0.05316 343.75)",
+          "oklch(37.86% 0.05316 343.75)",
+          "oklch(49.29% 0.05316 343.75)",
+          "oklch(60.71% 0.05316 343.75)",
+          "oklch(72.14% 0.05316 343.75)",
+          "oklch(83.57% 0.05316 343.75)",
+          "oklch(95.00% 0.05316 343.75)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero display",
+        "purpose": "Main heading; fluid Georgia with a 13ch measure."
+      },
+      "display-mobile": {
+        "displayName": "Mobile hero display",
+        "purpose": "Hero at viewport widths of 760px and below; 15ch measure."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Georgia section headings, limited to 17ch."
+      },
+      "title": {
+        "displayName": "Service title",
+        "purpose": "Georgia service names in open definition-list rows."
+      },
+      "wordmark": {
+        "displayName": "Temporary text wordmark",
+        "purpose": "Header wordmark; the approved identity asset has not been supplied."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "action-background",
+        "value": "background-color 120ms ease-out",
+        "purpose": "Action hover background only; transition is none under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "single-column-max",
+        "value": "760px"
+      },
+      {
+        "name": "narrow-phone-max",
+        "value": "400px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary WhatsApp action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The plum contact link used in the hero; no scripted click behavior.",
+      "html": "<a class=\"ds-button-primary\" href=\"https://wa.me/917845952592?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20custom%20outfit.\">Enquire on WhatsApp<svg aria-hidden=\"true\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 12h14m-6-6 6 6-6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 52px; max-width: 100%; padding: 0.8rem 1.4rem; border: 1px solid transparent; border-radius: 3px; background: var(--color-plum, #462238); color: var(--color-paper, #fbf8f5); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 0.9375rem; font-weight: 500; line-height: 1.5; text-align: center; text-decoration: none; transition: background-color 120ms ease-out; touch-action: manipulation; } .ds-button-primary svg { flex-shrink: 0; } .ds-button-primary:hover { background: var(--color-plum-deep, #35182a); } .ds-button-primary:focus-visible { outline: 2px solid var(--color-plum, #462238); outline-offset: 6px; } @media (prefers-reduced-motion: reduce) { .ds-button-primary { transition: none; } } @media (forced-colors: active) { .ds-button-primary { border-color: ButtonText; } }"
+    },
+    {
+      "name": "Inverse WhatsApp action",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "The paper action shown in its plum contact-band context.",
+      "html": "<div class=\"ds-contact-surface\"><a class=\"ds-button-light\" href=\"https://wa.me/917845952592?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20custom%20outfit.\">Enquire on WhatsApp<svg aria-hidden=\"true\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 12h14m-6-6 6 6-6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div>",
+      "css": ".ds-button-light { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 52px; max-width: 100%; padding: 0.8rem 1.4rem; border: 1px solid transparent; border-radius: 3px; background: var(--color-paper, #fbf8f5); color: var(--color-plum, #462238); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 0.9375rem; font-weight: 500; line-height: 1.5; text-align: center; text-decoration: none; transition: background-color 120ms ease-out; touch-action: manipulation; } .ds-button-light svg { flex-shrink: 0; } .ds-button-light:hover { background: var(--color-rose, #f2e5e8); } .ds-button-light:focus-visible { outline: 2px solid var(--color-paper, #fbf8f5); outline-offset: 6px; } @media (prefers-reduced-motion: reduce) { .ds-button-light { transition: none; } } @media (forced-colors: active) { .ds-button-light { border-color: ButtonText; } } .ds-contact-surface { background: var(--color-plum, #462238); color: var(--color-paper, #fbf8f5); } .ds-button-light { margin-block-start: 2rem; }"
+    },
+    {
+      "name": "Section navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Wrapping text links with 44px minimum target height and no overlay menu.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Main navigation\"><a href=\"#about\">About</a><a href=\"#services\">Services</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-navigation { display: flex; flex-wrap: wrap; gap: 0.25rem clamp(1rem, 3vw, 2.5rem); color: var(--color-plum, #462238); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 1rem; line-height: 1.7; } .ds-navigation a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; text-decoration-thickness: 1px; text-underline-offset: 0.3em; touch-action: manipulation; } .ds-navigation a:hover { text-decoration: underline; text-decoration-thickness: 2px; } .ds-navigation a:focus-visible { outline: 2px solid var(--color-plum, #462238); outline-offset: 6px; } @media (max-width: 400px) { .ds-navigation { gap: 1.5rem; } }"
+    },
+    {
+      "name": "Open service row",
+      "kind": "custom",
+      "refersTo": "service-row",
+      "description": "A definition-list row with a serif service name, muted explanation and fine rules.",
+      "html": "<dl class=\"ds-services\"><div class=\"ds-service-row\"><dt>Blouse making</dt><dd>Start with the blouse you have in mind. Share your ideas and the details that matter to you, and let’s discuss what’s possible.</dd></div></dl>",
+      "css": ".ds-services { margin: 0; background: var(--color-paper, #fbf8f5); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 1rem; line-height: 1.7; } .ds-service-row { display: grid; grid-template-columns: 1fr 1fr; align-items: baseline; gap: 0.75rem 10%; padding-block: 2rem; border-block-start: 1px solid var(--color-rule, #d8c9ce); } .ds-service-row:last-child { border-block-end: 1px solid var(--color-rule, #d8c9ce); } .ds-service-row > * { min-width: 0; } .ds-service-row dt { color: var(--color-plum, #462238); font-family: var(--font-display, Georgia, \"Times New Roman\", serif); font-weight: 400; font-size: clamp(1.8rem, 3vw, 2.25rem); line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance; overflow-wrap: anywhere; } .ds-service-row dd { margin: 0; max-width: 54ch; color: var(--color-muted, #6b5662); } @media (max-width: 760px) { .ds-service-row { grid-template-columns: 1fr; padding-block: 1.6rem; } .ds-service-row dd { max-width: 65ch; } }"
+    },
+    {
+      "name": "Conversation steps",
+      "kind": "custom",
+      "description": "Native ordered steps, set directly on the rose process band.",
+      "html": "<div class=\"ds-process\"><ol class=\"ds-process-steps\"><li><h3>Share your idea</h3><p>Tell us whether you’re thinking of a blouse or a dress, and what you have in mind.</p></li><li><h3>Talk through the possibilities</h3><p>Ask your questions and discuss the customisation options available for your piece.</p></li><li><h3>Agree the next steps</h3><p>Discuss the details with us before deciding how you’d like to go ahead.</p></li></ol></div>",
+      "css": ".ds-process { background: var(--color-rose, #f2e5e8); color: var(--color-plum, #462238); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 1rem; line-height: 1.7; } .ds-process-steps { display: grid; gap: 2rem; padding-inline-start: 1.5rem; margin: 0; } .ds-process-steps li { padding-inline-start: 0.75rem; } .ds-process-steps li::marker { color: var(--color-muted, #6b5662); font-family: var(--font-display, Georgia, \"Times New Roman\", serif); font-size: 1.25rem; } .ds-process-steps h3 { margin: 0 0 0.45rem; font-size: 1.0625rem; font-weight: 600; line-height: 1.5; } .ds-process-steps p { margin: 0; max-width: 48ch; color: var(--color-muted, #6b5662); text-wrap: pretty; }"
+    },
+    {
+      "name": "Contact details",
+      "kind": "custom",
+      "description": "Selectable confirmed contacts on plum, with natural email wrapping and an inverse focus ring.",
+      "html": "<address class=\"ds-contact-details\"><div><p class=\"ds-contact-label\">Phone</p><a href=\"tel:+917845952592\">+91 78459 52592</a></div><div><p class=\"ds-contact-label\">Email</p><a class=\"ds-email\" href=\"mailto:manjulajayanthi1@gmail.com\">manjulajayanthi1@gmail.com</a></div><div><p class=\"ds-contact-label\">Service area</p><p>Coimbatore, Tamil Nadu</p></div></address>",
+      "css": ".ds-contact-details { display: grid; gap: 1.8rem; min-width: 0; background: var(--color-plum, #462238); color: var(--color-paper, #fbf8f5); font-family: var(--font-body, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif); font-size: 1.0625rem; font-style: normal; line-height: 1.7; } .ds-contact-details p { margin: 0; text-wrap: pretty; } .ds-contact-details .ds-contact-label { margin-block-end: 0.3rem; color: var(--color-contact-muted, #ddcbd5); font-size: 0.875rem; } .ds-contact-details a { display: inline-block; padding-block: 0.3rem; color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.3em; touch-action: manipulation; } .ds-contact-details a:hover { text-decoration-thickness: 2px; } .ds-contact-details a:focus-visible { outline: 2px solid var(--color-paper, #fbf8f5); outline-offset: 6px; } .ds-email { overflow-wrap: anywhere; } .ds-contact-details ::selection { background: var(--color-rose, #f2e5e8); color: var(--color-plum, #462238); } @media (max-width: 760px) { .ds-contact-details { padding-block-start: 2rem; border-block-start: 1px solid #886579; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A personal conversation",
+    "overview": "Quiet serif headings, readable system sans-serif copy, open rows and generous space give this small boutique page a personal, restrained character. Paper is the base; rose and plum create flat section changes.\n\nThis records the actual [static page](site/index.html) and [stylesheet](site/styles.css), following the settled [direction contract](docs/landing-page-direction.md). It is a **LOCAL DRAFT**, not an approved V4 brand specification. Earlier V4 assets and exact values were not supplied. The palette, plain text wordmark and local system fonts are deliberate temporary decisions. The finish review returned \"ship — LOCAL DRAFT scope\"; no public deployment is represented here.",
+    "keyCharacteristics": [
+      "Serif display type paired with system sans-serif body copy.",
+      "Restrained asymmetric columns that become one reading column on phones.",
+      "Flat color bands, fine rules and direct contact links."
+    ],
+    "rules": [],
+    "dos": [
+      "Do preserve the documented provisional palette and font stacks when extending this local draft.",
+      "Do keep open rows, readable line lengths, wrapping contact details and visible keyboard focus.",
+      "Do update these extracted tokens and the sidecar together when the implementation changes."
+    ],
+    "donts": [
+      "Don't describe this draft as approved V4 branding or a public release.",
+      "Don't invent a logo, brand font or imagery to fill the missing approved assets.",
+      "Don't add card, input or animation patterns to this reference unless they exist in the page."
+    ]
+  }
+}
+

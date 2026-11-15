@@ -1,0 +1,55 @@
+{
+  "name": "navodhai",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "vp build && vp build --ssr src/entry-server.tsx --outDir .prerender && node scripts/prerender.mjs",
+    "preview": "vp preview --host 127.0.0.1 --port 4173 --strictPort",
+    "check": "vp check src scripts tests vite.config.ts playwright.config.ts package.json tsconfig.json index.html",
+    "check:deployment": "vp fmt --check vercel.json .impeccable/design.json",
+    "test": "vp test",
+    "test:build": "node --test scripts/*.test.mjs",
+    "test:smoke": "playwright test",
+    "build:checked": "pnpm build && node scripts/check-build.mjs && node scripts/package-vercel.mjs",
+    "build:vercel": "pnpm check && pnpm test && pnpm test:build && pnpm build:checked",
+    "validate": "pnpm check:deployment && pnpm build:vercel && pnpm test:smoke"
+  },
+  "dependencies": {
+    "lucide-react": "1.73.0",
+    "motion": "14.14.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@tailwindcss/vite": "4.3.5",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.10",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "axe-core": "^4.14.0",
+    "jsdom": "^31.0.1",
+    "parse-srcset": "1.0.2",
+    "postcss": "8.5.32",
+    "postcss-value-parser": "4.2.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "~7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.18.0",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "pnpm@12.18.0"
+}

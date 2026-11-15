@@ -1,0 +1,53 @@
+/* V4 colours stay fixed; these are adaptive interface surfaces. */
+:root:not([data-theme="light"]) {
+  color-scheme: dark;
+  --canvas: #261a24;
+  --ink: #f9f0e3;
+  --heading: #f9f0e3;
+  --muted: #dbc4c4;
+  --surface: #392732;
+  --rule: #806373;
+  --action-bg: #f9f0e3;
+  --action-ink: #47162f;
+  --focus: #be9a63;
+  --monogram-shadow: 0 2px 3px rgb(0 0 0 / 32%);
+  --scroll-thumb: #be9a63;
+  --scroll-thumb-hover: #d1b48b;
+}
+
+:root:not([data-theme="light"]) .boutique-page {
+  --hero-light-core: rgb(190 154 99 / 15%);
+  --hero-light-edge: rgb(200 139 150 / 6%);
+}
+
+/* Crossfade the complete colour state, rather than interpolating foreground/background independently. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(root) {
+  animation: none;
+}
+::view-transition-old(root) {
+  animation: theme-fade-out 220ms ease-out both;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-fade-in 220ms ease-out both;
+  mix-blend-mode: normal;
+}
+@keyframes theme-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#261a24" />
+    <link
+      rel="preload"
+      href="/src/assets/fonts/gfs-didot-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/src/assets/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta
+      name="description"
+      content="Navodhai is a handcrafted boutique for blouse and dress making, serving Coimbatore, Tamil Nadu. Discuss your requirements on WhatsApp or by email."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Navodhai" />
+    <meta property="og:title" content="Navodhai | Blouse &amp; Dress Making" />
+    <meta
+      property="og:description"
+      content="A handcrafted boutique serving Coimbatore, Tamil Nadu. Get in touch about blouse making, dress making and customisation."
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="200x200"
+      data-brand-icon="light"
+      media="not all"
+      href="/src/assets/brand/monogram-charcoal-export.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="200x200"
+      data-brand-icon="dark"
+      media="all"
+      href="/src/assets/brand/monogram-white-export.png"
+    />
+    <script>
+      (() => {
+        let preference = "dark";
+        try {
+          const saved = localStorage.getItem("navodhai-theme");
+          if (saved === "light" || saved === "dark") preference = saved;
+        } catch {}
+        const theme = preference;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.themePreference = preference;
+        document.querySelectorAll("link[data-brand-icon]").forEach((link) => {
+          link.media = link.dataset.brandIcon === theme ? "all" : "not all";
+        });
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === "dark" ? "#261a24" : "#f9f0e3";
+      })();
+    </script>
+    <title>Navodhai | Blouse &amp; Dress Making, Coimbatore</title>
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-11-14",
+  "purpose": "Three decorative miniature tailoring studies for the editorial second section.",
+  "webEncoding": "192×192 WebP, quality 82, compression level 6; generated alpha preserved.",
+  "prompts": [
+    {
+      "key": "pattern",
+      "prompt": "Use case: stylized-concept. Asset type: miniature decorative tailoring illustration for a boutique website, displayed at only 80px. Create ONE isolated object group on a genuinely transparent background, square composition. Style: refined tactile editorial still-life illustration, crisp organic edges, restrained realistic paper/fabric texture, subtle soft dimensional shading, no heavy cast shadow. The palette is warm Ivory #F9F0E3, Royal Plum #47162F, Dusty Rose #C88B96 and restrained Antique Gold #BE9A63. Strong simple silhouette readable at small sizes, subject fills about 80 percent of the canvas, generous unclipped edges. Flat-lay view. This is a conceptual studio object, not a finished garment or product photograph. No background panel, no white rectangle, no checkerboard, no surface, no border, no labels, no letters, no watermark, no logo, no hands, no flowers, no sparkles. Subject: one small ivory paper tailoring pattern piece shaped like a blouse bodice, with a crisp Royal Plum edge and just two fine dart/cut lines. Slightly angled, minimal and elegant. No fabric, no pencil, no scissors, no measuring tape. The paper outline should remain visible on an ivory website surface."
+    },
+    {
+      "key": "seam",
+      "prompt": "Use case: stylized-concept. Asset type: miniature decorative tailoring illustration for a boutique website, displayed at only 80px. Create ONE isolated object group on a genuinely transparent background, square composition. Style: refined tactile editorial still-life illustration, crisp organic edges, restrained realistic paper/fabric texture, subtle soft dimensional shading, no heavy cast shadow. The palette is warm Ivory #F9F0E3, Royal Plum #47162F, Dusty Rose #C88B96 and restrained Antique Gold #BE9A63. Strong simple silhouette readable at small sizes, subject fills about 80 percent of the canvas, generous unclipped edges. Flat-lay view. This is a conceptual studio object, not a finished garment or product photograph. No background panel, no white rectangle, no checkerboard, no surface, no border, no labels, no letters, no watermark, no logo, no hands, no flowers, no sparkles. Subject: one small square Dusty Rose woven fabric swatch, a single folded edge and one short, clearly visible Antique Gold stitched seam. Very simple and tactile, slightly angled, with rich rose colour. No paper, no pencil, no needle, no thread spool, no sewing tools. Keep the tiny stitches distinct rather than busy."
+    },
+    {
+      "key": "reference",
+      "prompt": "Use case: stylized-concept. Asset type: miniature decorative tailoring illustration for a boutique website, displayed at only 80px. Create ONE isolated object group on a genuinely transparent background, square composition. Style: refined tactile editorial still-life illustration, crisp organic edges, restrained realistic paper/fabric texture, subtle soft dimensional shading, no heavy cast shadow. The palette is warm Ivory #F9F0E3, Royal Plum #47162F, Dusty Rose #C88B96 and restrained Antique Gold #BE9A63. Strong simple silhouette readable at small sizes, subject fills about 80 percent of the canvas, generous unclipped edges. Flat-lay view. This is a conceptual studio object, not a finished garment or product photograph. No background panel, no white rectangle, no checkerboard, no surface, no border, no labels, no letters, no watermark, no logo, no hands, no flowers, no sparkles. Subject: one small ivory reference-sketch sheet and a single short Royal Plum wooden pencil resting diagonally across its lower corner. On the paper, only one minimal, neat dark plum outline of a blouse idea, no writing or annotations. Restrained flat-lay, slightly angled, crisp paper edges readable on light and dark website surfaces. No extra sheets, no notebook binding, no fabric, no tools besides this pencil."
+    }
+  ]
+}
