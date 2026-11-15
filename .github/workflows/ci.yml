@@ -1,6 +1,7 @@
 name: Validate static site
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
 

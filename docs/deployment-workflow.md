@@ -2,6 +2,8 @@
 
 Repository: https://github.com/mnishanth02/navadhai-website (private).
 
+Vercel's Git connection is active with production branch `main`. The local working branch is `development`. GitHub rejected the main branch-protection request with HTTP 403: private-repository branch protection requires GitHub Pro on this account. Until that is enabled, checks-before-merge and PR-only updates are team workflow rules rather than enforced GitHub restrictions. No plan was upgraded and the repository remains private.
+
 Develop on `development`, or create a short feature branch from it. Open a PR into `main` and require the `validate` GitHub Actions check before merging where the account plan supports branch protection. Prefer merge commits. Vercel's Git integration builds previews for development and PR pushes and production deployments for merges into `main`.
 
 The Vercel build runs formatting, lint, type checks, unit/build tests and static resource checks. Full Chromium smoke tests run in GitHub Actions. Production target does not imply public launch: the site's default indexing policy remains internal and Vercel Authentication is configured for **all deployments**, including custom domains.
