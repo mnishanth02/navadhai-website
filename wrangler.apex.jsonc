@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "navodhai-apex",
+  "account_id": "68876249314ab88c8b5bdb86ba5fd8c8",
+  "compatibility_date": "2026-11-15",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./.prerender/apex",
+    "html_handling": "none",
+    "not_found_handling": "404-page",
+  },
+  "routes": [
+    { "pattern": "navodhai.in", "custom_domain": true },
+    { "pattern": "http://www.navodhai.in/*", "zone_name": "navodhai.in" },
+  ],
+}

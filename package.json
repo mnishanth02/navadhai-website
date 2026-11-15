@@ -6,15 +6,16 @@
   "scripts": {
     "dev": "vp dev --host 127.0.0.1 --port 5173 --strictPort",
     "build": "vp build && vp build --ssr src/entry-server.tsx --outDir .prerender && node scripts/prerender.mjs",
-    "preview": "vp preview --host 127.0.0.1 --port 4173 --strictPort",
+    "preview": "wrangler dev --local --ip 127.0.0.1 --port 4173",
     "check": "vp check src scripts tests vite.config.ts playwright.config.ts package.json tsconfig.json index.html",
-    "check:deployment": "vp fmt --check vercel.json .impeccable/design.json public/site.webmanifest",
+    "check:deployment": "vp fmt --check wrangler.jsonc wrangler.apex.jsonc .impeccable/design.json public/site.webmanifest",
     "test": "vp test",
     "test:build": "node --test scripts/*.test.mjs",
     "test:smoke": "playwright test",
-    "build:checked": "pnpm build && node scripts/check-build.mjs && node scripts/package-vercel.mjs",
-    "build:vercel": "pnpm check && pnpm test && pnpm test:build && pnpm build:checked",
-    "validate": "pnpm check:deployment && pnpm build:vercel && pnpm test:smoke"
+    "build:checked": "pnpm build && node scripts/check-build.mjs && node scripts/package-cloudflare.mjs",
+    "build:ci": "pnpm check && pnpm test && pnpm test:build && pnpm build:checked",
+    "deploy": "node scripts/deploy-cloudflare.mjs",
+    "validate": "pnpm check:deployment && pnpm build:ci && pnpm test:smoke"
   },
   "dependencies": {
     "lucide-react": "1.73.0",
@@ -39,7 +40,8 @@
     "tailwindcss": "4.3.5",
     "typescript": "~7.0.2",
     "vite": "catalog:",
-    "vite-plus": "catalog:"
+    "vite-plus": "catalog:",
+    "wrangler": "4.162.0"
   },
   "devEngines": {
     "packageManager": {

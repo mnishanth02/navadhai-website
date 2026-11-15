@@ -22,9 +22,9 @@ Introduce Navodhai and make it straightforward to start an enquiry from one fast
 
 - Handcrafted boutique focused on blouse and dress making, explicitly confirmed by the user.
 - Explain services and invite a discussion of customisation. Specific capabilities, materials, turnaround and prices are not supplied. Service area is confirmed below.
-- One homepage: the hero/garment choices, confirmed services, a short online-ordering explanation, and one combined contact/footer. Internal hosting is on Vercel; a later Cloudflare migration should retain the same static output and canonical domain.
+- One homepage: the hero/garment choices, confirmed services, a short online-ordering explanation, and one combined contact/footer. Public hosting is on Cloudflare Workers Static Assets, using the static output and canonical www domain.
 - No product display, portfolio, commerce, CMS, database, contact form or analytics.
-- Local implementation and internal Vercel deployment are authorised; public marketing launch is deferred. Canonical domain: navodhai.in. Visits are optional and arranged when needed; enquiries begin online.
+- The owner authorised a public, indexable launch on Cloudflare Free. Canonical domain: www.navodhai.in. Visits are optional and arranged when needed; enquiries begin online.
 - Confirmed WhatsApp/contact number: +91 78459 52592; email: manjulajayanthi1@gmail.com; service area: Coimbatore, Tamil Nadu. The user supplied these during implementation on 14 November 2026.
 - The owner-confirmed domain is navodhai.in. Street address, opening hours and social profiles are not supplied; never invent them. The user has now supplied the Canva V4 companion guidelines and embedded logo artwork.
 

@@ -4,7 +4,7 @@ An online-first boutique landing page for blouse making, dress making and custom
 
 ## Run
 
-Use Node 24.11+ in the 24.x line. Vercel and CI are pinned to Node 24.x. The project pins pnpm 12.18.0 in `package.json`.
+Use Node 24.11+ in the 24.x line. Cloudflare deployment tooling and CI use Node 24.x. The project pins pnpm 12.18.0 in `package.json`.
 
 ```powershell
 pnpm install --frozen-lockfile
@@ -19,7 +19,7 @@ pnpm validate
 pnpm preview
 ```
 
-Production preview runs at http://localhost:4173. Install the Playwright Chromium browser once per development/CI machine with the command above. `pnpm validate` runs formatting, lint, type checks, interaction/theme/prerender tests, resource-checker regression tests, both builds, prerendering, resource-reference and size-budget checks, and Chromium production smoke/reflow tests. The smoke runner serves the packaged static output with its real CSP/cache policy and 404 behavior on port 4181 and closes it after testing; it fails if that port is already in use. `pnpm build` creates the deployable `dist/`; preview servers are for local review.
+Production preview runs at http://localhost:4173. Install the Playwright Chromium browser once per development/CI machine with the command above. `pnpm validate` runs formatting, lint, type checks, interaction/theme/prerender tests, resource-checker regression tests, both builds, prerendering, resource-reference and size-budget checks, and Chromium production smoke/reflow tests. The smoke runner serves the packaged static output with its real CSP/cache policy and 404 behavior on port 4181 and closes it after testing; it fails if that port is already in use. `pnpm build:checked` creates the deployable `dist/` with Cloudflare headers and redirects; preview servers are for local review.
 
 ## Edit
 
@@ -45,7 +45,7 @@ Production preview runs at http://localhost:4173. Install the Playwright Chromiu
 | `scripts/prerender.mjs` | Build-time React rendering into production HTML |
 | `scripts/check-build.mjs` | Prerender, metadata, indexing, resource and size assertions |
 | `scripts/site-config.mjs` | Canonical domain and explicit internal/public release policy |
-| `scripts/package-vercel.mjs` | Static-only Vercel Build Output API packaging and headers |
+| `scripts/package-cloudflare.mjs` | Cloudflare static headers, routing and apex redirect packaging |
 
 The confirmed contacts are **+91 78459 52592**, **manjulajayanthi1@gmail.com** and **Coimbatore, Tamil Nadu**. Edit these centrally in `src/content.ts`; review the HTML metadata if the business name or purpose changes. Topic choice prepares a message; the visitor sends it in WhatsApp. The site collects no enquiry data.
 
@@ -73,31 +73,26 @@ The branding remains static during refresh. The hero tagline makes a subtle 4px 
 
 See [the React implementation guide](docs/react-implementation.md) for current structure and validation, and [the brand adaptation record](docs/branding/canva-brand-adaptation.md) for current asset provenance and limits. [DESIGN.md](DESIGN.md) records current tokens. Earlier plans, implementation records, static snapshots and Python review tools are preserved in [the historical archive](docs/archive/README.md). **`src/` is current source and `dist/` is current output**. Only the current GFS Didot and Inter licence notices ship from `public/licenses/`; historical font licences remain beside the archived static fonts.
 
-## Vercel deployment and later public launch
+## Cloudflare deployment
 
-The current request is **internal testing on Vercel**. The canonical domain confirmed by the owner is `https://www.navodhai.in/`; both the apex and www domains are assigned in Vercel, with Cloudflare DNS routing verified. The new Vercel project is `navodhai-landing` in `mnishanth02s-projects`. The older `navodhai-ecom` project is separate.
+The approved public site uses Cloudflare Workers Static Assets on the free tier. `www.navodhai.in` is canonical; the apex redirects to www. The former Vercel project, deployments and domain ownership were removed. DNS remains at Cloudflare.
 
-The verified internal Preview deployment is [navodhai-landing on Vercel](https://navodhai-landing-inv7gx8lz-mnishanth02s-projects.vercel.app) (15 November 2026). Sign in with the owning Vercel account to view it. All 55 local tests passed. Live checks confirmed matching application assets, CSP hashes, noindex headers, immutable asset caching, the share image, the `/index.html` redirect, real 404 responses and authentication for unauthenticated visitors. Custom domains are assigned, verified and protected; the apex redirects to www.
+`pnpm validate` checks the source, tests, prerendered documents, resource budgets and browser behavior. Browser tests use the actual local Cloudflare runtime. The main Worker serves only `dist/`; a second asset-only Worker supplies the apex/HTTP redirects. Neither has a custom server script, database or paid binding.
 
-`pnpm build:vercel` checks source/tests, builds the client and build-time React renderer, prerenders HTML, verifies resources and budgets, then packages `.vercel/output/config.json` plus `.vercel/output/static/`. There are no deployed Functions, middleware, application server, database or image-transformation service. The portable `dist/` directory is retained for later Cloudflare migration. `vercel.json` uses the Other framework preset and this explicit build command; the Vercel project uses Node 24.x and pinned pnpm 12.18.0.
-
-Internal builds are the default, **including a Vercel Production-target deployment**. They emit `noindex, nofollow`, a disallowing robots policy and an `X-Robots-Tag` header. Public indexing requires both a production target (`VERCEL_ENV=production`, or `SITE_ENV=production` locally) **and** `SITE_VISIBILITY=public`. A Preview target stays unindexed even if the visibility variable is shared incorrectly. `SITE_URL` can override the owner-confirmed canonical origin when necessary. No deployment-specific preview URL becomes canonical.
-
-Noindex is not access control. Keep Vercel Authentication set to All Deployments for internal testing, including custom domains. Vercel requires the first deployment of a new project to target Production; it can still be authenticated, unindexed and deployed without custom-domain assignment. This is a platform target, not approval for a public marketing launch. Vercel Hobby remains restricted to non-commercial use; use an eligible plan before a commercial launch.
-
-For later updates, after installing/authenticating Vercel CLI:
+For a production build in PowerShell:
 
 ```powershell
+$env:SITE_ENV="production"
+$env:SITE_VISIBILITY="public"
+$env:SITE_URL="https://www.navodhai.in"
 pnpm validate
-pnpm dlx vercel@65.16.0 deploy --prebuilt --environment preview --yes
+pnpm deploy
 ```
 
-If Vercel's local `vercel build` helper fails on Windows symlink permissions, deploy source and let Vercel run `pnpm build:vercel` on its Linux builder. The result is still static-only. Project settings and login files under `.vercel/` and `.env*` are ignored and excluded from source uploads.
+Wrangler 4.162.0 is pinned in the project. Local deployment uses `pnpm exec wrangler login`; automated deployment uses the scoped `CLOUDFLARE_API_TOKEN` GitHub Actions secret. Tokens never belong in source files. `pnpm deploy` refuses an internal build or an unexpected production canonical origin.
 
-The generated routing configuration applies a CSP with hashes for the actual inline bootstrap/structured-data blocks; inline styles remain allowed for Motion. It prevents framing, MIME sniffing, forms, objects and unexpected connections. Fingerprinted `assets/` files receive immutable caching; HTML/metadata revalidate. Unknown paths return a static **404**, not the homepage. `/index.html` redirects to `/`. The share image is a versioned 1200?630 PNG; regenerate it with `node scripts/generate-share-image.mjs` after installing Playwright Chromium. Hosting builds never need Chromium.
+GitHub Actions validates pull requests. After a reviewed merge into `main`, it rebuilds with the explicit public settings, deploys both static Workers, and merges validated main changes back into `development`. Feature builds default to noindex and do not deploy over production. The default workers.dev URL is also marked noindex; the custom domain is the canonical public entry.
 
-Organization and Service structured data use only confirmed facts. LocalBusiness address/rating fields are omitted because no public address or verified review data has been supplied. Canonical/share URLs default to `www.navodhai.in`. A sitemap and crawlable generic robots policy are generated only for an explicitly public release. Google Business Profile, Search Console/Bing registration, AI-specific crawler setup and analytics were deliberately excluded from this pass.
+The generated `_headers` retain CSP hashes, framing/MIME protections and immutable fingerprinted-asset caching. Cloudflare revalidates ordinary files. Unknown routes return the real static 404. Public builds emit indexable metadata, crawlable robots.txt and a sitemap. Preview/internal builds remain noindex by default.
 
-Browser and home-screen icons, Open Graph/X card metadata and the existing branded share card are described in [website icons and sharing](docs/branding/site-sharing.md). Regenerate icons with `node scripts/generate-site-icons.mjs`. Social crawlers cannot fetch the homepage or image while Vercel Authentication is enabled; actual public link previews are a launch check, not a reason to remove internal protection.
-
-Before public launch: select the commercially eligible plan, set the explicit public visibility flag, rebuild, and verify the live domain's redirects, headers, indexing policy and contact handoffs. Add real work photographs and further business policies when provided. Keep full address, hours, prices, delivery areas and social profiles absent until confirmed. The validation workflow is prepared in `.github/workflows/ci.yml`; it validates pushes/PRs and synchronizes validated main changes into development. Vercel Git integration deploys main and creates previews for other branches. See [deployment workflow](docs/deployment-workflow.md) for branch and DNS setup.
+See [deployment workflow](docs/deployment-workflow.md) for setup and [website icons and sharing](docs/branding/site-sharing.md) for icon regeneration and share-card checks. Organization, Website and Service structured data use only confirmed facts; no address, rating, hours, prices, delivery promises or social handles are invented. Real work photographs and further business policies can be added when supplied. Analytics and external business/search registrations remain outside this implementation.

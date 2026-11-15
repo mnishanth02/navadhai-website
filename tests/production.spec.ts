@@ -41,13 +41,16 @@ test("static deployment serves security/cache headers, the share image and a rea
   expect(home.headers()["content-security-policy"]).toContain("script-src 'self' 'sha256-");
   expect(home.headers()["content-security-policy"]).toContain("frame-ancestors 'none'");
   expect(home.headers()["x-content-type-options"]).toBe("nosniff");
+  expect(home.headers()["cache-control"]).toContain("no-transform");
   const html = await home.text();
   expect(html).toContain('href="https://www.navodhai.in/"');
   expect(html).toContain("Enquire online. Visit by arrangement.");
+  expect(html).not.toContain("static.cloudflareinsights.com/beacon");
   const stylesheet = html.match(/href="([^"]+\.css)"/)![1];
   const asset = await request.get(stylesheet);
   expect(asset.status()).toBe(200);
   expect(asset.headers()["cache-control"]).toContain("immutable");
+  expect(asset.headers()["cache-control"].match(/max-age=/g)).toHaveLength(1);
   const share = await request.get("/og-image.png");
   expect(share.status()).toBe(200);
   expect(share.headers()["content-type"]).toBe("image/png");
@@ -56,6 +59,9 @@ test("static deployment serves security/cache headers, the share image and a rea
     "/assets/missing.js",
     "/src/content.ts",
     "/.prerender/entry-server.js",
+    "/_headers",
+    "/_redirects",
+    "/wrangler.jsonc",
   ]) {
     const missing = await request.get(path);
     expect(missing.status()).toBe(404);
@@ -66,13 +72,26 @@ test("static deployment serves security/cache headers, the share image and a rea
   expect(redirect.headers()["location"]).toBe("/");
 });
 
+test("apex redirect preserves the requested path and query", async ({ request }) => {
+  test.skip(
+    Boolean(process.env.SMOKE_BASE_URL) && !process.env.SMOKE_APEX_URL,
+    "Provide the apex URL when validating remote domain routing.",
+  );
+  const origin = process.env.SMOKE_APEX_URL ?? "http://127.0.0.1:4182";
+  for (const path of ["/", "/example/path?source=check"]) {
+    const response = await request.get(`${origin}${path}`, { maxRedirects: 0 });
+    expect(response.status()).toBe(308);
+    expect(response.headers()["location"]).toBe(`https://www.navodhai.in${path}`);
+  }
+});
+
 test("browser and mobile icons load with the correct types and follow the appearance choice", async ({
   page,
   request,
 }) => {
   const fallback = await request.get("/favicon.ico");
   expect(fallback.status()).toBe(200);
-  expect(fallback.headers()["content-type"]).toBe("image/vnd.microsoft.icon");
+  expect(fallback.headers()["content-type"]).toMatch(/^image\/(vnd\.microsoft\.icon|x-icon)$/);
   const manifestResponse = await request.get("/site.webmanifest");
   expect(manifestResponse.status()).toBe(200);
   expect(manifestResponse.headers()["content-type"]).toBe("application/manifest+json");

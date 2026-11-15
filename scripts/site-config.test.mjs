@@ -11,33 +11,29 @@ await test("local builds default to an unindexed preview with the owner-confirme
     origin: "https://www.navodhai.in/",
   });
 });
-await test("Vercel Preview cannot become public through a shared SITE_ENV override", () => {
+await test("preview builds cannot become indexable through a shared visibility override", () => {
   assert.equal(
-    resolveSiteConfig({ VERCEL_ENV: "preview", SITE_ENV: "production", SITE_VISIBILITY: "public" })
-      .production,
+    resolveSiteConfig({ SITE_ENV: "preview", SITE_VISIBILITY: "public" }).production,
     false,
   );
 });
-await test("production mode is explicit locally and follows Vercel's target remotely", () => {
+await test("public indexing requires an explicit production build and public visibility", () => {
   assert.equal(
     resolveSiteConfig({ SITE_ENV: "production", SITE_VISIBILITY: "public" }).production,
     true,
   );
+  assert.equal(resolveSiteConfig({ SITE_ENV: "production" }).production, false);
+  assert.equal(resolveSiteConfig({ SITE_VISIBILITY: "public" }).production, false);
   assert.equal(
-    resolveSiteConfig({ VERCEL_ENV: "production", SITE_VISIBILITY: "public" }).production,
-    true,
-  );
-  assert.equal(resolveSiteConfig({ VERCEL_ENV: "production" }).production, false);
-  assert.equal(
-    resolveSiteConfig({ VERCEL_ENV: "production", SITE_VISIBILITY: "internal" }).production,
+    resolveSiteConfig({ SITE_ENV: "production", SITE_VISIBILITY: "internal" }).production,
     false,
   );
 });
 await test("preview deployment URLs never replace the canonical domain", () => {
   assert.equal(
     resolveSiteConfig({
-      VERCEL_URL: "temporary.vercel.app",
-      VERCEL_PROJECT_PRODUCTION_URL: "alias.vercel.app",
+      WORKERS_CI_BRANCH: "feature/example",
+      WORKERS_CI_COMMIT_SHA: "temporary",
     }).origin,
     "https://www.navodhai.in/",
   );
