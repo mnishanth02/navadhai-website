@@ -1,6 +1,7 @@
 name: Validate static site
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
 
@@ -8,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: validate-${{ github.ref }}
+  group: validate-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
