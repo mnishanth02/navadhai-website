@@ -27,16 +27,16 @@ typography:
     lineHeight: 1.1
   hero-tagline:
     fontFamily: "GFS Didot, Georgia, serif"
-    fontSize: "clamp(3.25rem, 6cqi, 5rem)"
+    fontSize: "clamp(3.5rem, 6.2cqi, 5.75rem)"
     fontWeight: 400
-    lineHeight: 1.06
-    letterSpacing: "-0.015em"
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
   hero-tagline-mobile:
     fontFamily: "GFS Didot, Georgia, serif"
-    fontSize: "clamp(1.875rem, 12cqi, 3rem)"
+    fontSize: "clamp(1.875rem, 16cqi, 4.5rem)"
     fontWeight: 400
-    lineHeight: 1.06
-    letterSpacing: "-0.015em"
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
   hero-service:
     fontFamily: "Inter, Arial, sans-serif"
     fontSize: "1.125rem"
@@ -60,19 +60,19 @@ typography:
     letterSpacing: "-0.012em"
   editorial-heading:
     fontFamily: "GFS Didot, Georgia, serif"
-    fontSize: "clamp(2.25rem, 3.6vw, 3.25rem)"
+    fontSize: "clamp(2.5rem, 4.2vw, 3.75rem)"
     fontWeight: 400
-    lineHeight: 1.12
+    lineHeight: 1.1
   editorial-note:
     fontFamily: "GFS Didot, Georgia, serif"
-    fontSize: "clamp(1.5rem, 2vw, 1.75rem)"
+    fontSize: "clamp(1.625rem, 2.25vw, 2rem)"
     fontWeight: 400
     lineHeight: 1.2
   contact-heading:
     fontFamily: "GFS Didot, Georgia, serif"
-    fontSize: "clamp(2.75rem, 6vw, 4.75rem)"
+    fontSize: "clamp(3.5rem, 7vw, 6rem)"
     fontWeight: 400
-    lineHeight: 1.08
+    lineHeight: 1.05
   body:
     fontFamily: "Inter, Arial, sans-serif"
     fontSize: "1rem"
@@ -100,7 +100,7 @@ rounded:
 spacing:
   step: "8px"
   gutter: "clamp(1.25rem, 5vw, 5rem)"
-  section: "clamp(3.5rem, 6vw, 5.5rem)"
+  section: "clamp(3.5rem, 7vw, 6.5rem)"
 components:
   hero-pointer-light:
     width: "clamp(20rem, 52cqi, 46rem)"
@@ -134,16 +134,18 @@ GFS Didot 400 is the companion display face; it is not claimed to be the logo's 
 
 The centred brand lockup sits above the hero, with one borderless sun/moon icon button on the right. When the header container is at most 16rem wide, including when the visitor enlarges text, the identity gets the full first row and the theme control sits at the right of a second row. The monogram and name can also wrap within their link if needed. This header stays in normal page flow and scrolls away. The floating bar, compact identity state, frame, blur and docking listeners were removed after the user rejected the strip over the content. There is no replacement overlay. The separate floating back-to-top icon remains at the lower edge of the page.
 
-The hero uses the approved editorial option A: the two-line **Be a princess.** headline at the left, the transparent textile illustration in the centre, and garment choices with a WhatsApp action at the right. The quieter service description **Blouse & dress making.** and confirmed locality sit beneath the tagline; the former introductory paragraph is removed. Content is capped at 1248px. When the opening container is at most 60rem wide, the reading order becomes centred tagline/service/locality, illustration, then enquiry. At 33.75rem the headline and controls use their phone sizes. These rem-based container thresholds also adapt to enlarged text rather than squeezing the three columns. Tablet/phone garment choices wrap into additional rows when their labels need room. The artwork stays fully visible at 4:3, without a rectangular background.
+The hero retains the approved editorial option A: the two-line **Be a princess.** headline at the left, the transparent textile illustration in the centre, and garment choices with a WhatsApp action at the right. The service description **Blouse & dress making.** and confirmed locality sit beneath the tagline. Content is capped at 1248px. Larger display type, more vertical space and a slightly wider artwork composition give the textile the leading role. The centred header remains in normal flow, with a fine bottom rule separating the identity from the hero.
 
-Made around your idea follows as a supporting-surface band. Its left column introduces the confirmed services in Coimbatore; its right column describes blouse making, dress making and customisation, separated by two fine rules. Each description retains its decorative 88px studio-object illustration (56px on phones). The next canvas section, Start with a conversation, explains three online-enquiry steps in a semantic ordered list: share an idea, discuss requirements/measurements, and agree on the next step. A two-column composition stacks at 760px. Visits in Coimbatore are optional and arranged as needed. These sections have no duplicate selector, message preview or enquiry button. The removed preparation/FAQ is not restored. Conceptual illustrations never stand in for real work photographs.
+At an opening container width of 72rem or less, the headline and illustration share two columns, with the enquiry controls in a full-width row beneath. That row aligns the garment choices with the action and is separated from the composition by a fine rule. At 42rem or less, the reading order becomes centred tagline/service/locality, illustration, then enquiry. The phone headline uses container-relative type with a 1.875rem minimum so its two lines remain intact at 320px with 200% root text. These rem-based thresholds also adapt to enlarged text rather than squeezing columns. Tablet/phone garment choices wrap when enlarged labels need room. The artwork stays fully visible at 4:3, without a rectangular background.
 
-The single plum contact/footer closes the page after the services and ordering sections. A Didot **Let’s talk.** heading, sized from 44px to 76px, shares a row with an underlined WhatsApp text action. A fine rule separates this invitation from a compact identity/contact row: 44px gold monogram, Navodhai, confirmed service area, phone and email. The row stacks at 760px; phone/email stack at 540px. No separate footer strip, repeated tagline or extra picture is added. A fixed 48px circular up-arrow appears after scrolling beyond the smaller of 480px or 60% of viewport height. It is a native top link with an accessible name and a two-colour focus ring for visibility over both page and footer surfaces.
+Made around your idea follows as a supporting-surface band. A two-column introduction sits above three open service columns, each with a fine top rule, a 112px conceptual studio-object illustration, a Didot title and a short description. There are no enclosing cards or shadows. At 760px the introduction and services become single-column; the illustrations sit beside their titles at 72px, reducing to 64px with 24px titles below 540px. The next canvas section, Start with a conversation, retains a two-column composition and explains three online-enquiry steps in a semantic ordered list. Didot list markers and fine separators clarify the sequence. It stacks at 760px. Visits in Coimbatore are optional and arranged as needed. These sections have no duplicate selector, message preview or enquiry button. The removed preparation/FAQ is not restored. Conceptual illustrations never stand in for real work photographs.
+
+The single plum contact/footer closes the page after the services and ordering sections. A Didot **Let’s talk.** heading, sized from 56px to 96px, shares a baseline with an underlined WhatsApp text action. More space separates the invitation from the compact identity/contact row: 44px gold monogram, Navodhai, confirmed service area, phone and email. The row stacks at 760px; phone/email stack at 540px. Bottom padding reserves room for the fixed back-to-top control so it does not cover the final contact row at page end. No separate footer strip, repeated tagline or extra picture is added. The fixed 48px circular up-arrow appears after scrolling beyond the smaller of 480px or 60% of viewport height. It is a native top link with an accessible name and a two-colour focus ring for visibility over both page and footer surfaces.
 
 ## Components
 
 - The hero action and closing WhatsApp link are at least 52px tall; identity/contact links have at least 44px targets and the floating top link is 48px. Footer text is Ivory on Plum with Gold hover/focus states. No appended arrow glyphs.
-- Hero garment buttons sit under **Choose your piece.** and use full rectangular boundaries, 6px corners, hover feedback and immediate pressed states. Blouse is selected by default with a contrasting fill and visible check; the check remains visible on mobile. At normal text sizes the three choices fit one phone row with 48px minimum heights and compact 14px labels; enlarged labels wrap into additional rows. Selection updates the opening's actual WhatsApp destination and decorative seam marks. The initial hero destination is a blouse enquiry, including in prerendered HTML; the footer retains an independent general enquiry. The visible action stays **Enquire**, with the WhatsApp brand glyph and accessible name **Enquire on WhatsApp**. No helper paragraph appears below it. The glyph is reused for the contact action.
+- Hero garment buttons sit under **Choose your piece.** and use full rectangular boundaries, 6px corners, hover feedback and immediate pressed states. Blouse is selected by default with a subtle surface fill, stronger border and visible check, leaving the solid WhatsApp action as the strongest control. The check remains visible on mobile and a system-colour inset outline preserves selection in forced colours. At normal text sizes the three choices fit one phone row with 48px minimum heights and compact 14px labels; enlarged labels wrap into additional rows. Selection updates the opening's actual WhatsApp destination and decorative seam marks. The initial hero destination is a blouse enquiry, including in prerendered HTML; the footer retains an independent general enquiry. The visible action stays **Enquire**, with the WhatsApp brand glyph and accessible name **Enquire on WhatsApp**. No helper paragraph appears below it. The glyph is reused for the contact action.
 - Appearance uses a borderless 44px sun/moon icon button labelled with its next action, **Switch to light mode** or **Switch to dark mode**. It has a transparent background and no permanent outline; keyboard focus retains the shared visible focus style. Dark is the first-visit default regardless of the device setting; manual light/dark choices persist in local storage and take precedence. Explicit changes rotate/fade the two overlaid icons and use a short native page crossfade where supported. Interrupted requests preserve the latest choice. A head script sets the saved theme before painting, while the HTML and CSS retain the dark default without JavaScript. Favicons and browser theme colour track the active appearance.
 - Build-time React rendering includes the static brand header, complete page, static editorial section and contact/footer with direct general/contact links. The theme and garment controls are visible at their final size before hydration, with buttons disabled until ready. Hydration enables them in place and activates the scroll-dependent top icon. Missing application JavaScript leaves the identity, readable content and working contact routes, including the footer monogram's native top link.
 - Focus is a 3px outline with 5px offset: plum on light surfaces and gold on dark surfaces. Text selection and caret use the same palette. The native scrollbar is thin, with Antique Gold on the dark canvas or muted Plum on Ivory; older WebKit engines receive a 10px track and rounded inset thumb. Forced-colour boundaries are retained. Long words and labels wrap at enlarged text sizes.

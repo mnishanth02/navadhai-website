@@ -9,7 +9,9 @@
   .brand-header-slot {
     container-type: inline-size;
     min-height: 80px;
-    margin-block-start: 2rem;
+    margin-block-start: 2.25rem;
+    padding-block-end: 1.5rem;
+    border-block-end: 1px solid var(--color-rule);
   }
   .brand-header {
     position: relative;
@@ -94,7 +96,8 @@
   @layer components {
     .brand-header-slot {
       min-height: 64px;
-      margin-block-start: 1.25rem;
+      margin-block-start: 1rem;
+      padding-block-end: 1rem;
     }
     .brand-header {
       min-height: 64px;

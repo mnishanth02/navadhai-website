@@ -20,7 +20,6 @@ export function IdeaSection() {
           {ideaNotes.map((note, index) => (
             <div key={note.title}>
               <dt>
-                <span>{note.title}</span>
                 <img
                   className="idea-note-illustration"
                   src={illustrations[index]}
@@ -30,6 +29,7 @@ export function IdeaSection() {
                   loading="lazy"
                   decoding="async"
                 />
+                <span>{note.title}</span>
               </dt>
               <dd>{note.description}</dd>
             </div>
