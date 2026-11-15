@@ -8,7 +8,7 @@
     "build": "vp build && vp build --ssr src/entry-server.tsx --outDir .prerender && node scripts/prerender.mjs",
     "preview": "vp preview --host 127.0.0.1 --port 4173 --strictPort",
     "check": "vp check src scripts tests vite.config.ts playwright.config.ts package.json tsconfig.json index.html",
-    "check:deployment": "vp fmt --check vercel.json .impeccable/design.json",
+    "check:deployment": "vp fmt --check vercel.json .impeccable/design.json public/site.webmanifest",
     "test": "vp test",
     "test:build": "node --test scripts/*.test.mjs",
     "test:smoke": "playwright test",

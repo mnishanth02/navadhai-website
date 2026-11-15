@@ -16,7 +16,7 @@ export function resolveSiteConfig(env = process.env) {
   const production = productionTarget && env.SITE_VISIBILITY === "public";
   const supplied = env.SITE_URL?.trim();
   // The owner-confirmed domain stays canonical across Vercel and Cloudflare.
-  const value = supplied || "https://navodhai.in/";
+  const value = supplied || "https://www.navodhai.in/";
   let origin = null;
   if (value) {
     const url = new URL(value);

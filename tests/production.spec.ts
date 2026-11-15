@@ -42,7 +42,7 @@ test("static deployment serves security/cache headers, the share image and a rea
   expect(home.headers()["content-security-policy"]).toContain("frame-ancestors 'none'");
   expect(home.headers()["x-content-type-options"]).toBe("nosniff");
   const html = await home.text();
-  expect(html).toContain('href="https://navodhai.in/"');
+  expect(html).toContain('href="https://www.navodhai.in/"');
   expect(html).toContain("Enquire online. Visit by arrangement.");
   const stylesheet = html.match(/href="([^"]+\.css)"/)![1];
   const asset = await request.get(stylesheet);
@@ -64,6 +64,47 @@ test("static deployment serves security/cache headers, the share image and a rea
   const redirect = await request.get("/index.html", { maxRedirects: 0 });
   expect(redirect.status()).toBe(308);
   expect(redirect.headers()["location"]).toBe("/");
+});
+
+test("browser and mobile icons load with the correct types and follow the appearance choice", async ({
+  page,
+  request,
+}) => {
+  const fallback = await request.get("/favicon.ico");
+  expect(fallback.status()).toBe(200);
+  expect(fallback.headers()["content-type"]).toBe("image/vnd.microsoft.icon");
+  const manifestResponse = await request.get("/site.webmanifest");
+  expect(manifestResponse.status()).toBe(200);
+  expect(manifestResponse.headers()["content-type"]).toBe("application/manifest+json");
+  const manifest = await manifestResponse.json();
+  for (const icon of manifest.icons) {
+    const response = await request.get(icon.src);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toBe("image/png");
+    const bytes = await response.body();
+    expect(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`).toBe(icon.sizes);
+  }
+  await page.goto("/");
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+    "href",
+    "/apple-touch-icon.png",
+  );
+  const apple = await request.get("/apple-touch-icon.png");
+  expect(apple.status()).toBe(200);
+  const dark = page.locator('link[data-brand-icon="dark"]');
+  const light = page.locator('link[data-brand-icon="light"]');
+  await expect(dark).toHaveAttribute("media", "all");
+  await expect(dark).toHaveAttribute("href", "/favicon.png");
+  await expect(light).toHaveAttribute("media", "not all");
+  await page.getByRole("button", { name: "Switch to light mode" }).click();
+  await expect(light).toHaveAttribute("media", "all");
+  await expect(light).toHaveAttribute("href", "/favicon-light.png");
+  await expect(dark).toHaveAttribute("media", "not all");
+  for (const path of ["/favicon.png", "/favicon-light.png"]) {
+    const response = await request.get(path);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toBe("image/png");
+  }
 });
 
 test("production assets load, React hydrates and contact choices remain independent", async ({

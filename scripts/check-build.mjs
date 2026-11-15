@@ -40,6 +40,61 @@ const share = await readFile(resolve(output, "og-image.png"));
 assert.equal(share.subarray(1, 4).toString(), "PNG", "Share image must be a real PNG");
 assert.equal(share.readUInt32BE(16), 1200);
 assert.equal(share.readUInt32BE(20), 630);
+assert(share.length < 1_000_000, "Keep the social image below 1 MB");
+for (const [file, dimension] of [
+  ["favicon.png", 96],
+  ["favicon-light.png", 96],
+  ["apple-touch-icon.png", 180],
+  ["icon-192.png", 192],
+  ["icon-512.png", 512],
+  ["icon-maskable-512.png", 512],
+]) {
+  const icon = await readFile(resolve(output, file));
+  assert.equal(icon.subarray(1, 4).toString(), "PNG", `${file} must be a real PNG`);
+  assert.equal(icon.readUInt32BE(16), dimension, `${file} width`);
+  assert.equal(icon.readUInt32BE(20), dimension, `${file} height`);
+}
+const ico = await readFile(resolve(output, "favicon.ico"));
+assert.equal(ico.readUInt16LE(2), 1, "Fallback must be a real ICO");
+assert.equal(ico.readUInt16LE(4), 3);
+for (const [index, dimension] of [16, 32, 48].entries()) {
+  const entry = 6 + index * 16;
+  assert.equal(ico[entry], dimension);
+  assert.equal(ico[entry + 1], dimension);
+  const length = ico.readUInt32LE(entry + 8);
+  const offset = ico.readUInt32LE(entry + 12);
+  assert(offset + length <= ico.length, "ICO image must be contained in the file");
+  assert.equal(ico.readUInt32BE(offset + 16), dimension);
+}
+const manifest = JSON.parse(await readFile(resolve(output, "site.webmanifest"), "utf8"));
+assert.equal(manifest.name, "Navodhai");
+assert.equal(manifest.display, "browser", "Keep native browser navigation");
+assert.deepEqual(
+  manifest.icons.map((icon) => [icon.src, icon.sizes, icon.purpose]),
+  [
+    ["/icon-192.png", "192x192", "any"],
+    ["/icon-512.png", "512x512", "any"],
+    ["/icon-maskable-512.png", "512x512", "maskable"],
+  ],
+);
+assert.equal(
+  document.querySelector('link[rel="apple-touch-icon"]').getAttribute("sizes"),
+  "180x180",
+);
+for (const [property, expected] of [
+  ["og:title", document.title],
+  ["og:image", `${site.origin}og-image.png`],
+  ["og:image:secure_url", `${site.origin}og-image.png`],
+  ["og:image:type", "image/png"],
+  ["og:url", site.origin],
+]) {
+  assert.equal(document.querySelector(`meta[property="${property}"]`).content, expected);
+}
+assert.equal(document.querySelector('meta[name="twitter:title"]').content, document.title);
+assert.equal(
+  document.querySelector('meta[name="twitter:image:alt"]').content,
+  document.querySelector('meta[property="og:image:alt"]').content,
+);
 assert(
   site.headers["Content-Security-Policy"].includes("'sha256-"),
   "Theme bootstrap must be allowed by a CSP hash",
@@ -68,6 +123,9 @@ if (site.production) {
 const assets = await readdir(resolve(output, "assets"));
 const files = [
   "index.html",
+  "favicon.ico",
+  "favicon.png",
+  "favicon-light.png",
   ...assets
     .filter((name) => /\.(js|css|woff2|webp|png)$/.test(name))
     .map((name) => `assets/${name}`),

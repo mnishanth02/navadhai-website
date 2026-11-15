@@ -13,6 +13,8 @@ const types = {
   ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".png": "image/png",
+  ".ico": "image/vnd.microsoft.icon",
+  ".webmanifest": "application/manifest+json",
   ".webp": "image/webp",
   ".woff2": "font/woff2",
   ".txt": "text/plain; charset=utf-8",
