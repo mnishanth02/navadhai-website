@@ -15,6 +15,12 @@ function structuredData(site, business, topics) {
         name: business.name,
         slogan: business.tagline,
         ...(site.origin ? { url: site.origin } : {}),
+        logo: {
+          "@type": "ImageObject",
+          url: absolute(site, "icon-512.png"),
+          width: 512,
+          height: 512,
+        },
         telephone: `+${business.whatsappNumber}`,
         email: business.email,
         areaServed: area,
@@ -25,6 +31,13 @@ function structuredData(site, business, topics) {
           email: business.email,
           areaServed: area,
         },
+      },
+      {
+        "@type": "WebSite",
+        "@id": id("website"),
+        name: business.name,
+        ...(site.origin ? { url: site.origin } : {}),
+        publisher: { "@id": id("business") },
       },
       ...topics.map((topic) => ({
         "@type": "Service",
@@ -53,22 +66,31 @@ export function createSiteDocuments({ shell, markup, notFoundMarkup, site, busin
       }
       element.setAttribute("content", content);
     };
+    const title = `${business.name} | Blouse & Dress Making, Coimbatore`;
+    const description =
+      "Blouse making, dress making and customisation enquiries in Coimbatore, Tamil Nadu. Start online with Navodhai on WhatsApp; visits can be arranged when needed.";
+    const image = absolute(site, "og-image.png");
+    const imageAlt =
+      "Navodhai. Be a princess. Plum, ivory and rose textile pattern pieces beside blouse and dress making in Coimbatore.";
+    document.title = title;
     meta("robots", site.production ? "index, follow" : "noindex, nofollow");
-    meta(
-      "description",
-      "Blouse making, dress making and customisation enquiries in Coimbatore, Tamil Nadu. Start online with Navodhai on WhatsApp; visits can be arranged when needed.",
-    );
-    meta(
-      "og:description",
-      "Blouse and dress making in Coimbatore. Share your idea with Navodhai online; visits can be arranged when needed.",
-      true,
-    );
-    meta("og:image", absolute(site, "og-image.png"), true);
+    meta("description", description);
+    meta("og:type", "website", true);
+    meta("og:site_name", business.name, true);
+    meta("og:locale", "en_IN", true);
+    meta("og:title", title, true);
+    meta("og:description", description, true);
+    meta("og:image", image, true);
+    meta("og:image:secure_url", image, true);
+    meta("og:image:type", "image/png", true);
     meta("og:image:width", "1200", true);
     meta("og:image:height", "630", true);
-    meta("og:image:alt", "Navodhai. Be a princess. Blouse and dress making in Coimbatore.", true);
+    meta("og:image:alt", imageAlt, true);
     meta("twitter:card", "summary_large_image");
-    meta("twitter:image", absolute(site, "og-image.png"));
+    meta("twitter:title", title);
+    meta("twitter:description", description);
+    meta("twitter:image", image);
+    meta("twitter:image:alt", imageAlt);
     if (site.origin) {
       const canonical = document.createElement("link");
       canonical.rel = "canonical";

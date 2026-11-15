@@ -6,7 +6,10 @@ import { resolveSiteConfig } from "./site-config.mjs";
 import { createSiteDocuments } from "./site-documents.mjs";
 
 await test("local builds default to an unindexed preview with the owner-confirmed canonical domain", () => {
-  assert.deepEqual(resolveSiteConfig({}), { production: false, origin: "https://navodhai.in/" });
+  assert.deepEqual(resolveSiteConfig({}), {
+    production: false,
+    origin: "https://www.navodhai.in/",
+  });
 });
 await test("Vercel Preview cannot become public through a shared SITE_ENV override", () => {
   assert.equal(
@@ -36,15 +39,15 @@ await test("preview deployment URLs never replace the canonical domain", () => {
       VERCEL_URL: "temporary.vercel.app",
       VERCEL_PROJECT_PRODUCTION_URL: "alias.vercel.app",
     }).origin,
-    "https://navodhai.in/",
+    "https://www.navodhai.in/",
   );
 });
 for (const url of [
   "http://navodhai.in",
-  "https://navodhai.in/path",
+  "https://www.navodhai.in/path",
   "https://user:pass@navodhai.in",
-  "https://navodhai.in/?query=1",
-  "https://navodhai.in/#fragment",
+  "https://www.navodhai.in/?query=1",
+  "https://www.navodhai.in/#fragment",
   "https://localhost",
 ]) {
   await test(`rejects an invalid canonical URL: ${url}`, () => {
@@ -68,7 +71,7 @@ const shell = `<!doctype html><html><head><meta name="robots" content="noindex, 
 
 for (const production of [false, true]) {
   await test(`generates consistent ${production ? "production" : "preview"} indexing, schema and hashed CSP`, () => {
-    const site = { production, origin: "https://navodhai.in/" };
+    const site = { production, origin: "https://www.navodhai.in/" };
     const result = createSiteDocuments({
       shell,
       markup: "<h1>Be a princess.</h1>",
@@ -87,13 +90,38 @@ for (const production of [false, true]) {
       assert.equal(document.querySelector('link[rel="canonical"]').href, site.origin);
       assert.equal(
         document.querySelector('meta[property="og:image"]').content,
-        "https://navodhai.in/og-image.png",
+        "https://www.navodhai.in/og-image.png",
       );
       const schema = JSON.parse(
         document.querySelector('script[type="application/ld+json"]').textContent,
       );
       assert.equal(schema["@graph"].filter((item) => item["@type"] === "Service").length, 3);
       assert.equal(schema["@graph"][0].name, "Navodhai");
+      assert.equal(schema["@graph"][0].logo.url, `${site.origin}icon-512.png`);
+      const website = schema["@graph"].find((item) => item["@type"] === "WebSite");
+      assert.equal(website.url, site.origin);
+      assert.equal(website.publisher["@id"], schema["@graph"][0]["@id"]);
+      for (const property of ["og:title", "twitter:title"]) {
+        const attribute = property.startsWith("og:") ? "property" : "name";
+        assert.equal(document.querySelectorAll(`meta[${attribute}="${property}"]`).length, 1);
+        assert.equal(
+          document.querySelector(`meta[${attribute}="${property}"]`).content,
+          document.title,
+        );
+      }
+      assert.equal(document.querySelector('meta[property="og:image:type"]').content, "image/png");
+      assert.equal(
+        document.querySelector('meta[property="og:image:secure_url"]').content,
+        `${site.origin}og-image.png`,
+      );
+      assert.equal(
+        document.querySelector('meta[name="twitter:description"]').content,
+        document.querySelector('meta[name="description"]').content,
+      );
+      assert.equal(
+        document.querySelector('meta[name="twitter:image:alt"]').content,
+        document.querySelector('meta[property="og:image:alt"]').content,
+      );
       assert.equal(schema["@graph"][0].address, undefined);
       assert(!result.html.includes("aggregateRating"));
       const hash = createHash("sha256").update(bootstrap).digest("base64");
@@ -102,9 +130,11 @@ for (const production of [false, true]) {
       assert.equal(result.headers["X-Robots-Tag"], production ? undefined : "noindex, nofollow");
       assert(result.robots.includes(production ? "Allow: /" : "Disallow: /"));
       assert.equal(Boolean(result.sitemap), production);
-      if (production) assert(result.sitemap.includes("https://navodhai.in/"));
+      if (production) assert(result.sitemap.includes("https://www.navodhai.in/"));
       assert(!result.notFound.includes("<script"));
       assert(!result.notFound.includes('rel="canonical"'));
+      assert(!result.notFound.includes('property="og:'));
+      assert(!result.notFound.includes('name="twitter:'));
     } finally {
       dom.window.close();
     }
